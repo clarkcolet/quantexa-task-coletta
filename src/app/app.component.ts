@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'bankchart';
+export class AppComponent 
+{
+  panelOpenState = false;
+  title:string = "Data Displayer";
 }

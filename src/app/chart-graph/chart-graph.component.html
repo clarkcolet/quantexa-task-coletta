@@ -1,0 +1,52 @@
+ <mat-tab-group style="align-items: center;">
+      <mat-tab label="Line Chart"> 
+              <div class="row ml-5">
+                      <div class="col">
+                          <div class="row">
+                        <h4>
+                          Amount per Day
+                        </h4>
+                      </div>
+                      <div class="row">
+                        <ngx-charts-line-chart
+                        [view]="view"
+                        [scheme]="colorScheme"
+                        [results]="multiDate"
+                        [gradient]="gradient"
+                        [xAxis]="showXAxis"
+                        [yAxis]="showYAxis"
+                        [legend]="showLegend"
+                        [showXAxisLabel]="showXAxisLabel"
+                        [showYAxisLabel]="showYAxisLabel"
+                        [xAxisLabel]="xAxisLabel"
+                        [yAxisLabel]="yAxisLabel"
+                        (select)="onSelect($event)">
+                        </ngx-charts-line-chart>
+                      </div>
+                    </div>
+              </div>
+      </mat-tab>
+      <mat-tab label="Bar Chart"> 
+              <div class="row ml-5">
+                      <h4>
+                        Total Spend per Expense Type
+                      </h4>
+                    </div>
+                    <div class="form-group row ml-5">
+                      <ngx-charts-bar-vertical-stacked
+                      [view]="view"
+                      [scheme]="colorScheme"
+                      [results]="multiType"
+                      [gradient]="gradient"
+                      [xAxis]="showXAxis"
+                      [yAxis]="showYAxis"
+                      [legend]="showLegend"
+                      [showXAxisLabel]="showXAxisLabel"
+                      [showYAxisLabel]="showYAxisLabel"
+                      [xAxisLabel]="xAxisLabel"
+                      [yAxisLabel]="yAxisLabel"
+                      (select)="onSelect($event)">
+                      </ngx-charts-bar-vertical-stacked>
+                    </div>
+      </mat-tab>
+    </mat-tab-group>

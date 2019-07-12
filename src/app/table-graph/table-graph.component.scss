@@ -1,0 +1,50 @@
+.mat-tab-label-active{
+    opacity: 1 !important;
+  }
+
+  ::ng-deep .mat-tab-body-content {
+    overflow: visible !important;
+  }
+
+  mat-grid-tile {
+    background: white;
+ }
+
+ ::ng-deep .mat-tab-body-wrapper {
+     margin-top: 20px;
+ }
+
+
+ table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  th, td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
+
+  .mat-header-cell
+  {
+    color: white;
+   font-size: 16px;
+   background-color: black;
+  }
+
+  .mat-cell
+  {
+ color: black;
+ font-size: 14px;
+  }
+
+  ::ng-deep.chart-legend
+  {
+    background-color: burlywood;
+  }
+
+  ::ng-deep.chart-legend .legend-label-text {
+    color:black;
+    text-overflow: ellipsis;
+  }
