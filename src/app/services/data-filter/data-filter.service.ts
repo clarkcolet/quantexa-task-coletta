@@ -13,6 +13,8 @@ export class DataFilterService {
        {
        }
 
+//This method enables to change the dataKey 
+//in a global manner
   public setKey(dataKey:DataKey)
   {
       this.dataKey = dataKey;

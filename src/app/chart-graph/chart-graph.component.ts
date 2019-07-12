@@ -13,7 +13,8 @@ export class ChartGraphComponent implements OnInit {
 
   constructor(private dataService:DataRetrieverService, private dataConverter:DataConverterService) { }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.dataService.getJSONEPSR().subscribe(data=>
       {
        this.multiDate = this.dataConverter.getGraphArray(DataKey.supplier,DataKey.date,data);

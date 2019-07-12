@@ -1,3 +1,4 @@
+//Field required for creating the charts
 export class Series
 {
     name:string;

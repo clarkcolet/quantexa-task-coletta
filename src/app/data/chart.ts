@@ -1,5 +1,6 @@
 import {Series} from './series';
 
+//Data format to create charts
 export class ChartDataMulti
 {
     name:string;

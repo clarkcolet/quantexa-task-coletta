@@ -5,6 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export abstract class DataOperatorsService 
 {
-
   abstract totalValue([]):number;
 }

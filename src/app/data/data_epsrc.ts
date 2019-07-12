@@ -1,3 +1,4 @@
+//Data Format of the JSON data
 export interface DataEPSR 
 {
     department: string;

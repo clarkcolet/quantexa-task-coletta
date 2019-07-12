@@ -5,6 +5,9 @@ import { DataEPSR } from 'src/app/data/data_epsrc';
 @Injectable({
   providedIn: 'root'
 })
+
+//This class returns the summation of a given field.
+//In this case, it is customised for the data's 'amount' property.
 export class OperatorsService implements DataOperatorsService {
 
   constructor() 

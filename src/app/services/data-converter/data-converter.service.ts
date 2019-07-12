@@ -13,6 +13,8 @@ export class DataConverterService {
 
   constructor(private filterService:DataFilterService, private operatorService:OperatorsService) { }
 
+  //The data is filtered by Provider followed by either Date
+  //or Type of Expense 
   public getGraphArray(dataKey:DataKey, dataKeyGraph:DataKey,data:DataEPSR[])
   {
 
@@ -124,8 +126,6 @@ export class DataConverterService {
     }
     return seriesArray;
   }
-
-
 
 }
 
