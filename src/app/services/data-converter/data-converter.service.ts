@@ -14,21 +14,8 @@ export class DataConverterService {
 
   constructor(private filterService:DataFilterService, private operatorService:OperatorsService) { }
 
-  public getDateFormat(data:DataEPSR[]):DataEPSR[]
-  {
-    var dataNew:DataEPSR[] = [];
-    for(let singleData of data)
-    {
-      var dateString = singleData.date.toString();
-      dateString = dateString.substr(6, 4)+"-"+dateString.substr(3, 2)+"-"+dateString.substr(0, 2);
-      var date = new Date(dateString);
-      singleData.date =date;
-      dataNew.push(singleData);
-    }
-      return dataNew;
-  }
   //The data is filtered by Provider followed by either Date
-  //or Type of Expense 
+  //or Supplier
   public getGraphArray(dataKey:DataKey, dataKeyGraph:DataKey,data:DataEPSR[])
   {
 
@@ -56,7 +43,7 @@ export class DataConverterService {
              this.filterService.setKey(DataKey.supplier);
         break;
     }
- 
+
     switch(dataKeyGraph)
     {
      
@@ -129,14 +116,17 @@ export class DataConverterService {
   private generateChartDataExpenseType(data:DataEPSR[])
   {
     var keys:any[] = this.filterService.filterKeys(data);
+    console.log("keys",keys);
     var lineChartArray:ChartDataMulti[] = [];
     for(let key of keys)
     {
         var filteredWithKey = this.filterService.filterData(key,data);
+        console.log("filteredWithKey",filteredWithKey);
         this.filterService.setKey(DataKey.expenseType);
         var seriesArray:Series[] = this.getSeriesExpenseType(filteredWithKey);
-        var lineChartsData:ChartDataMulti = new ChartDataMulti(filteredWithKey[0].supplier,seriesArray);
+        var lineChartsData:ChartDataMulti = new ChartDataMulti(filteredWithKey[0].expenseType,seriesArray);
         lineChartArray.push(lineChartsData);
+        console.log("lineChartsData",lineChartsData);
         this.filterService.setKey(DataKey.supplier);
     }
    
@@ -151,7 +141,7 @@ export class DataConverterService {
     {
       var filteredWithKeyIn = this.filterService.filterData(keyIn,filteredWithKey);
       var value = this.operatorService.totalValue(filteredWithKeyIn);
-      var series:Series = new Series(filteredWithKeyIn[0].expenseType,value);
+      var series:Series = new Series(filteredWithKeyIn[0].supplier,value);
       seriesArray.push(series);
     }
     return seriesArray;
