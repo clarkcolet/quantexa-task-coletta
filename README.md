@@ -34,6 +34,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 -Enable zooming capabilities on the graph charts.
 -Making the graphs dynamic (e.g.: clicking on a specific bar or data point displays the relevant data on the table).
 -Implementation of averages and/or percentages.
+-Filtering the table information according to the different fields.
 
 
 

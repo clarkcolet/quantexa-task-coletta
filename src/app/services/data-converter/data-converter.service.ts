@@ -116,17 +116,14 @@ export class DataConverterService {
   private generateChartDataExpenseType(data:DataEPSR[])
   {
     var keys:any[] = this.filterService.filterKeys(data);
-    console.log("keys",keys);
     var lineChartArray:ChartDataMulti[] = [];
     for(let key of keys)
     {
         var filteredWithKey = this.filterService.filterData(key,data);
-        console.log("filteredWithKey",filteredWithKey);
         this.filterService.setKey(DataKey.expenseType);
         var seriesArray:Series[] = this.getSeriesExpenseType(filteredWithKey);
         var lineChartsData:ChartDataMulti = new ChartDataMulti(filteredWithKey[0].expenseType,seriesArray);
         lineChartArray.push(lineChartsData);
-        console.log("lineChartsData",lineChartsData);
         this.filterService.setKey(DataKey.supplier);
     }
    
