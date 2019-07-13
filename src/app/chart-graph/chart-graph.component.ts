@@ -4,6 +4,7 @@ import { DataRetrieverService } from '../services/data-retriever/data-retriever.
 import { DataKey } from '../data/data_key';
 import {DataEPSR} from '../data/data_epsrc';
 import { DatePipe } from '@angular/common';
+import { MatTabChangeEvent } from '@angular/material';
 
 
 @Component({
@@ -33,9 +34,10 @@ export class ChartGraphComponent implements OnInit {
     gradient = false;
     showLegend = true;
     showXAxisLabel = true;
-    xAxisLabel = '';
+    xAxisLabel = 'Date';
+    
     showYAxisLabel = true;
-    yAxisLabel = 'Total Amount';
+    yAxisLabel = 'Total Amount (GBP)';
     timeline = false;
     autoScale = true;
 
@@ -45,5 +47,15 @@ export class ChartGraphComponent implements OnInit {
   
     public multiDate = [];
     public multiType = [];
+
+    tabChanged = (tabChangeEvent: MatTabChangeEvent): void => {
+      if(tabChangeEvent.index==0)
+      {
+        this.xAxisLabel = 'Date';
+      } else if(tabChangeEvent.index==1)
+      {
+        this.xAxisLabel = 'Provider';
+      }
+    }
 
 }
