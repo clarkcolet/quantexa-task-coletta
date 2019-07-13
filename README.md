@@ -2,6 +2,8 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.0.
 
+This project was implemented by using Angular Material and NGX Charts.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -25,3 +27,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Future improvements
+
+-Let the user choose the axes to customise data visualisations by providing options from a list.
+-Enable zooming capabilities on the graph charts.
+-Making the graphs dynamic (e.g.: clicking on a specific bar or data point displays the relevant data on the table).
+-Implementation of averages and/or percentages.
+
+
+
+
+
+Implemented by Claudio Coletta
+
