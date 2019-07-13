@@ -10,3 +10,15 @@ export class Series
         this.value = value;
     }
 }
+
+export class SeriesDate
+{
+    name:Date;
+    value:number;
+
+    constructor(name:Date, value:number)
+    {
+        this.name = name;
+        this.value = value;
+    }
+}

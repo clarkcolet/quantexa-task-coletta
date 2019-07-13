@@ -44,7 +44,7 @@ export class DataFilterService {
             case DataKey.entity:
                   for (let entry of data) 
                     {
-                      keys.push(entry.department);
+                      keys.push(entry.entity);
                     }
             break;
             case DataKey.expenseArea:
@@ -73,7 +73,6 @@ export class DataFilterService {
             break;
 
     }
-
        return  Array.from(new Set(keys ));
   }
 

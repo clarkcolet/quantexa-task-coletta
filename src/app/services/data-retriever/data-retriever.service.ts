@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 import {DataEPSR} from '../../data/data_epsrc';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +28,6 @@ export class DataRetrieverService {
   {
     return this.http.get<DataEPSR[]>(this._jsonURL);
   }
+
 
 }

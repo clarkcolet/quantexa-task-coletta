@@ -3,8 +3,9 @@ import {DataEPSR} from '../../data/data_epsrc';
 import {DataKey} from '../../data/data_key';
 import { DataFilterService } from '../data-filter/data-filter.service';
 import { OperatorsService } from '../data-operators/operators.service';
-import { ChartDataMulti } from 'src/app/data/chart';
-import { Series } from 'src/app/data/series';
+import { ChartDataMulti, ChartDataMultiDate } from 'src/app/data/chart';
+import { Series, SeriesDate } from 'src/app/data/series';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,19 @@ export class DataConverterService {
 
   constructor(private filterService:DataFilterService, private operatorService:OperatorsService) { }
 
+  public getDateFormat(data:DataEPSR[]):DataEPSR[]
+  {
+    var dataNew:DataEPSR[] = [];
+    for(let singleData of data)
+    {
+      var dateString = singleData.date.toString();
+      dateString = dateString.substr(6, 4)+"-"+dateString.substr(3, 2)+"-"+dateString.substr(0, 2);
+      var date = new Date(dateString);
+      singleData.date =date;
+      dataNew.push(singleData);
+    }
+      return dataNew;
+  }
   //The data is filtered by Provider followed by either Date
   //or Type of Expense 
   public getGraphArray(dataKey:DataKey, dataKeyGraph:DataKey,data:DataEPSR[])
@@ -42,8 +56,10 @@ export class DataConverterService {
              this.filterService.setKey(DataKey.supplier);
         break;
     }
+ 
     switch(dataKeyGraph)
     {
+     
       case DataKey.date:
           return this.generateChartDataDate(data);
       case DataKey.expenseType:
@@ -57,6 +73,19 @@ export class DataConverterService {
       var array = [];
       for(let dataChart of dataChartDataMulti)
       {
+      
+        var obj = {"name":dataChart.name,"series":dataChart.series};
+        array.push(obj);
+      }
+      return array;
+  }
+
+  public normaliseLineDataDate(dataChartDataMulti:ChartDataMultiDate[])
+  {
+      var array = [];
+      for(let dataChart of dataChartDataMulti)
+      {
+      
         var obj = {"name":dataChart.name,"series":dataChart.series};
         array.push(obj);
       }
@@ -68,28 +97,28 @@ export class DataConverterService {
   private generateChartDataDate(data:DataEPSR[])
   {
     var keys:any[] = this.filterService.filterKeys(data);
-    var lineChartArray:ChartDataMulti[] = [];
+    var lineChartArray:ChartDataMultiDate[] = [];
     for(let key of keys)
     {
         var filteredWithKey = this.filterService.filterData(key,data);
         this.filterService.setKey(DataKey.date);
-        var seriesArray:Series[] = this.getSeriesDate(filteredWithKey);
-        var lineChartsData:ChartDataMulti = new ChartDataMulti(filteredWithKey[0].supplier,seriesArray);
+        var seriesArray:SeriesDate[] = this.getSeriesDate(filteredWithKey);
+        var lineChartsData:ChartDataMultiDate = new ChartDataMultiDate(filteredWithKey[0].entity,seriesArray);
         lineChartArray.push(lineChartsData);
-        this.filterService.setKey(DataKey.supplier);
+        this.filterService.setKey(DataKey.entity);
     }
-    return this.normaliseLineData(lineChartArray); 
+    return this.normaliseLineDataDate(lineChartArray); 
   }
 
   private getSeriesDate(filteredWithKey:DataEPSR[])
   {
-    var seriesArray:Series[] = [];
+    var seriesArray:SeriesDate[] = [];
     var keysIn:any[] = this.filterService.filterKeys(filteredWithKey);
     for(let keyIn of keysIn)
     {
       var filteredWithKeyIn = this.filterService.filterData(keyIn,filteredWithKey);
       var value = this.operatorService.totalValue(filteredWithKeyIn);
-      var series:Series = new Series(filteredWithKeyIn[0].date,value);
+      var series:SeriesDate = new SeriesDate(filteredWithKeyIn[0].date,value);
       seriesArray.push(series);
     }
     return seriesArray;
@@ -110,6 +139,7 @@ export class DataConverterService {
         lineChartArray.push(lineChartsData);
         this.filterService.setKey(DataKey.supplier);
     }
+   
     return this.normaliseLineData(lineChartArray); 
   }
 

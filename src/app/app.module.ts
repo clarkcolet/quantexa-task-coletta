@@ -22,6 +22,7 @@ import { DataConverterService } from './services/data-converter/data-converter.s
 import { DataFilterService } from './services/data-filter/data-filter.service';
 import { OperatorsService } from './services/data-operators/operators.service';
 import { ChartGraphComponent } from './chart-graph/chart-graph.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { ChartGraphComponent } from './chart-graph/chart-graph.component';
     MatInputModule,
     MatExpansionModule
   ],
-  providers: [DataRetrieverService, DataConverterService, DataFilterService,OperatorsService ],
+  providers: [DataRetrieverService, DataConverterService, DataFilterService,OperatorsService, DatePipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
